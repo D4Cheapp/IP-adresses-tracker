@@ -11,6 +11,17 @@ module.exports =
     {
         runtimeChunk: 'single',
     },
+
+    //Подключение dotenv
+    resolve: {
+        // add the fallback setting below
+        fallback: {
+            "fs": false,
+            "os": false,
+            "path": false
+        },
+    },
+
     //Настройки сервера
     devServer:
     {
