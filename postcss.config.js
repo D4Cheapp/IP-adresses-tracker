@@ -1,7 +1,7 @@
-import * as autoprefixer from 'autoprefixer'
 //Подключение библиотеки autoprefixer для postcss
-module.exports = {
+module.exports =
+{
     plugins:[
-        autoprefixer
+        require("autoprefixer")
     ]
 }
