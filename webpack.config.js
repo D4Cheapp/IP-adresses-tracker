@@ -41,7 +41,7 @@ module.exports =
                     options:
                     {
                         //Файл с переменными и миксинами
-                        additionalData: '@import "src/sass/_variablesAndGlobal.sass"',
+                        additionalData: '@use "src/sass/_variablesAndGlobal.sass" as *',
                     }
                 },]
             },
@@ -72,7 +72,7 @@ module.exports =
                     loader: "webp-loader",
                     options:
                     {
-                        quality: 50
+                        quality: 100
                     }
                 }]
             }],
