@@ -24,7 +24,7 @@ async function inputValidate(key, isButton)
         }
         else
         {
-            errorWindow('Вы ввели неправильный запрос')
+            errorWindow('invalid input')
         }
         userInput.value = ''
     }

@@ -1,14 +1,6 @@
-import {Loader} from '@googlemaps/js-api-loader'
-import data from '../../token.json'
+import * as L from 'leaflet'
+import Marker from '../images/icon-location.svg'
 import {errorWindow} from "./errorWindow";
-
-//Настройка подключения к api google maps
-const loader = new Loader(
-{
-    apiKey: data.GOOGLE_MAPS_API_TOKEN,
-    version: 'weekly',
-    libraries: ['places']
-})
 
 //Html элемент для вставки карты
 const mapContainer = document.getElementById('Map')
@@ -16,26 +8,22 @@ const mapContainer = document.getElementById('Map')
 //Функция для загрузки карты по переданным координатам
 export function mapFindLocation(x,y)
 {
-    const isMobile = window.innerHeight > window.innerWidth
-    const mapOption =
+    try
     {
-        disableDefaultUI: isMobile,
-        center:
-        {
-            lat: x,
-            lng: y
-        },
-        zoom: 13
-    }
+        const map = L.map(mapContainer,
+    {
+            center: [x,y],
+            zoom: 13
+        })
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.marker([x,y]).addTo(map)
 
-    loader.load()
-    .then(google =>
-    {
-        new google.maps.Map(mapContainer,mapOption)
-    })
-    .catch(e =>
+        document.getElementsByClassName('leaflet-marker-icon')[0].src = Marker
+    }
+    catch (e)
     {
         console.error(e)
         errorWindow('Google maps api error')
-    })
+    }
+
 }
