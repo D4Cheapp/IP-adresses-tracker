@@ -16,7 +16,7 @@ const ipFieldsArray = ['ip_address,city','timezone','connection','longitude','la
 const ipOptions = `fields=${ipFieldsArray.join(',')}`
 
 //IP запрос на сервер
-export async function ipAndDomainInfoSearching(ip)
+export async function ipInfoSearching(ip)
 {
     try
     {
@@ -36,7 +36,7 @@ export async function ipAndDomainInfoSearching(ip)
     catch (e)
     {
         console.error(e)
-        errorWindow('Api connection error')
+        errorWindow('Ip api connection error')
     }
 
 }
@@ -55,14 +55,16 @@ export async function domainSearchInfo(domain)
         const domainCountry = domainApiResponseData?.registryData?.registrant?.country
         const domainRegister = domainApiResponseData?.registrarName
 
-        ipAddress.textContent = domainName === '' ? '–' : domainName
-        location.textContent = domainCountry === '' ? '–' : domainCountry
-        isp.textContent = domainRegister === '' ? '–' : domainRegister
+        ipAddress.textContent = domainName === undefined ? '–' : domainName
+        location.textContent = domainCountry === undefined ? '–' : domainCountry
+        isp.textContent = domainRegister === undefined ? '–' : domainRegister
         timezone.textContent = `–`
     }
     catch (e)
     {
         console.error(e)
-        errorWindow('Api connection error')
+        errorWindow('Domain api connection error')
     }
 }
+
+window.onload = ipInfoSearching

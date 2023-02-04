@@ -16,8 +16,10 @@ const mapContainer = document.getElementById('Map')
 //Функция для загрузки карты по переданным координатам
 export function mapFindLocation(x,y)
 {
+    const isMobile = window.innerHeight > window.innerWidth
     const mapOption =
     {
+        disableDefaultUI: isMobile,
         center:
         {
             lat: x,
@@ -26,15 +28,14 @@ export function mapFindLocation(x,y)
         zoom: 13
     }
 
-    loader
-        .load()
-            .then(google =>
-                {
-                    new google.maps.Map(mapContainer,mapOption)
-                })
-        .catch(e =>
-        {
-            console.error(e)
-            errorWindow('Не удалось загрузить карту')
-        })
+    loader.load()
+    .then(google =>
+    {
+        new google.maps.Map(mapContainer,mapOption)
+    })
+    .catch(e =>
+    {
+        console.error(e)
+        errorWindow('Google maps api error')
+    })
 }

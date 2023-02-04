@@ -1,0 +1,42 @@
+section.Map
+  height: 65vh
+  width: 100%
+
+aside.Error-Container
+  position: absolute
+  opacity: 0
+  z-index: 1
+
+  align-items: center
+  display: flex
+
+  padding: 1vw
+  margin: -2vw auto
+  right: 0
+  left: 0
+
+  width: 40vw
+
+  background: $coralRed
+  border: $scarlet 2px solid
+  border-radius: 20px
+  transition: .2s
+
+  p.Error-Container__Error-Text
+    margin: 0
+    font-weight: 700
+    font-size: 1vw
+    color: $white
+
+aside.Error-Container.Error-Happens
+  opacity: 1
+  margin-top: 2vw
+
+@media (max-width: 1024px)
+  aside.Error-Container
+    padding: 3vh
+    height: 2vh
+    width: 75vw
+
+    p.Error-Container__Error-Text
+      font-size: 2vh
